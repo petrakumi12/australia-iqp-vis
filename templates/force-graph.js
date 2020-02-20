@@ -1,6 +1,6 @@
 console.log('hi');
-let names_path = 'resources/all_names_new.csv';
-let direction_path = 'resources/to_from.csv';
+let names_path = 'templates/resources/all_names_new.csv';
+let direction_path = 'templates/resources/to_from.csv';
 let org_types = ['Business', 'Community Organization', 'Eduation', 'Education', 'Government', 'Local Government', 'Other', 'State Government', 'Trust/Foundation', 'Trust/Foundation/Foundation', 'Trust/Foundations/Foundation', 'Target','']
 let color = ["#4e79a7", "#f28e2c", "#e15759", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#9c755f", "#9c755f", "#bab0ab", "#fffff"];
 let map = {
