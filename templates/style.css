@@ -2,14 +2,13 @@ body {
     background-color: #000;
 }
 
-svg #viz {
-    /*z-index: -1 !important;*/
-}
+
 
 .typed {
     position: absolute;
+    margin-top: 5em !important;
+    margin-left: 4em !important;
     left: 0;
-    /*width: 50%;*/
     top: 0;
     font-family: "Microsoft Tai Le", sans-serif;
     font-size: 1.3em;
@@ -18,13 +17,33 @@ svg #viz {
     z-index: -1;
 }
 
-.top-button {
-    opacity: 0.2;
+
+
+.top-div {
+    font-family: "Microsoft Tai Le", sans-serif !important;
     position: absolute;
-    left: 0;
+    border: none;
     top: 0;
-    z-index: 450;
+    font-size: 0.75em;
 }
+
+.btn {
+    background-color: black;
+    color: #cecece;
+
+}
+.btn:hover .btn:focus .btn.active{
+    background-color: #121212;
+    color: #747474;
+}
+
+
+
+.dropdown-menu{
+    background-color: #121212;
+    color: #cecece;
+}
+
 
 .footer {
     opacity: 0.3;
@@ -32,6 +51,8 @@ svg #viz {
     color: #cecece;
     position: absolute;
     bottom: 2%;
+    margin-left: 4em !important;
+
 }
 
 @keyframes slideInFromLeft {
@@ -56,3 +77,65 @@ svg #viz {
 
     }
 }
+
+
+.checkbox-menu li label {
+    display: block;
+    padding: 3px 10px;
+    /*clear: both;*/
+    /*font-weight: normal;*/
+    /*line-height: 1.42857143;*/
+    /*color: #cecece;*/
+    /*white-space: nowrap;*/
+    /*margin:0;*/
+    /*transition: background-color .4s ease;*/
+}
+.checkbox-menu li input {
+    margin: 0.2em 0.5em;
+    /*top: 2px;*/
+    position: absolute;
+    left: 0px;
+}
+
+.checkbox-menu li.active label {
+    background-color: #121212;
+    font-weight:bold;
+}
+
+.checkbox-menu li label:hover,
+.checkbox-menu li label:focus {
+    background-color: #3d3d3d;
+}
+
+.checkbox-menu li.active label:hover,
+.checkbox-menu li.active label:focus {
+    background-color: #3d3d3d;
+}
+
+
+
+/*#dat-gui {*/
+    /*font-family: "Microsoft Tai Le", sans-serif !important;*/
+    /*font-size: 0.8em !important;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*z-index: 450 !important;*/
+/*}*/
+
+
+/*.top-btn {*/
+    /*font-family: "Microsoft Tai Le", sans-serif !important;*/
+    /*position: absolute;*/
+    /*background-color: black;*/
+    /*border: none;*/
+    /*left: 300px;*/
+    /*top: 0;*/
+    /*height: 20px;*/
+    /*width: 245px;*/
+    /*!*opacity: 0.2;*!*/
+    /*font-size: 0.75em;*/
+    /*color: white;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
