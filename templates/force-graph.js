@@ -11,6 +11,7 @@ let map = {
     8: 'eight',
     9: 'nine'
 };
+let darkness = -0.8;
 
 let names_path = 'templates/resources/all_names_new.csv';
 let direction_path = 'templates/resources/to_from.csv';
@@ -125,7 +126,7 @@ function graph() {
                     return (d.effort / 5) + 5
                 })
                 .attr("fill", function (d, i) {
-                    return ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), -0.8)
+                    return ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness)
                 })
                 // .attr('fill-opacity', 0.8)
                 .attr("stroke", "#262626")
@@ -231,15 +232,15 @@ function ColorLuminance(hex, lum) {
 
 
 function mouseover(d, obj) {
+    console.log('mouseover', obj)
 
     d3.select(obj)
-        .transition()
-        .attr('r', (d.effort / 5) + 10);
+        .attr('r', (d.effort / 5) + 15);
     //make all circles darker
     d3.selectAll("circle")
         .transition()
         .duration(250)
-        .attr('fill', e => ColorLuminance(color[org_types.indexOf(e.data)].replace("#", ""), -0.8))
+        .attr('fill', e => ColorLuminance(color[org_types.indexOf(e.data)].replace("#", ""), darkness))
 
     //except the ones with the same class
     d3.selectAll('.' + gen_class(d.data))
@@ -253,19 +254,25 @@ function mouseover(d, obj) {
 }
 
 function mouseout(d, obj) {
-    if (cur_state) {
-        d3.select(obj)
-            .transition()
+     d3.select(obj)
             .attr('r', (d.effort / 5) + 5);
+
+    console.log('cur state is', cur_state)
+    if (cur_state) {
+
 
         d3.selectAll("line")
             .attr('stroke-opacity', 0.3)
             .attr('stroke-width', d => Math.sqrt(d.value))
+
+        d3.selectAll('circle')
+            .transition()
+            .attr('fill', d => color[org_types.indexOf(d.data)])
     }
     else {
         d3.selectAll('circle')
             .transition()
-            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), -0.8))
+            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness))
             // .attr("stroke", "#262626")
             // .attr('stroke-opacity', 0.3)
     }

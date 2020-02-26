@@ -32,7 +32,7 @@ function load_dat_gui(svg) {
                 this[org] = false;
             }
             d3.selectAll('circle')
-                .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), -0.8))
+                .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness))
                 .attr('stroke-opacity', 0.3)
 
             // console.log('helloooo', prev_controls)
@@ -84,7 +84,7 @@ function load_dat_gui(svg) {
                 } else {
                     //if turned on then want to hide
                     d3.selectAll('.' + gen_class(el))
-                        .attr('fill', ColorLuminance(color[org_types.indexOf(el)].replace("#", ""), -0.8))
+                        .attr('fill', ColorLuminance(color[org_types.indexOf(el)].replace("#", ""), darkness))
                         .attr('stroke-opacity', 0.3)
                 }
             }

@@ -23,7 +23,7 @@ function toggle_group(html_el) {
     } else {
         //if turned off then want to hide
         d3.selectAll('.' + gen_class(group_name))
-            .attr('fill', ColorLuminance(color[org_types.indexOf(group_name)].replace("#", ""), -0.8))
+            .attr('fill', ColorLuminance(color[org_types.indexOf(group_name)].replace("#", ""), darkness))
             .attr('stroke-opacity', 0.3)
     }
 }
@@ -48,9 +48,7 @@ function select_all() {
 
 function deselect_all() {
     d3.selectAll('circle')
-        .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), -0.8))
-    // .attr("stroke", "#262626")
-    // .attr('stroke-opacity', 0.3)
+        .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness))
         toggle_all_checkboxes(false)
 
 }
@@ -65,3 +63,24 @@ function toggle_all_checkboxes(onoff) {
     }
 }
 
+function toggle_color_blind(obj) {
+    if (!obj.checked) {
+        color = ["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab", "#fffff"];
+    } else {
+        color = ["#ffffff", "#218aee", "#44aa99", "#0a461e", "#332288", "#ddcc77", "#999933", "#cc6677", "#882255", "#aa4499"]
+    }
+     d3.selectAll('circle')
+            .attr("fill", function (d) {
+                return ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness)
+            });
+    let dropdown = document.getElementById('dropdown-list');
+    for (let li of dropdown.childNodes){
+        console.log('li', li.childNodes[0].innerText)
+        if (li.childNodes[0].tagName === 'LABEL'){
+            let idx = org_types.indexOf(li.childNodes[0].innerText);
+            console.log(idx)
+            let cur_color = color[idx].replace("#", "");
+            li.childNodes[0].style.backgroundColor = ColorLuminance(String(cur_color), -0.5);
+        }
+    }
+}

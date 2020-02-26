@@ -1,7 +1,6 @@
 let org_types = ['Business', 'Community Organization', 'Education', 'Government', 'Local Government', 'Other', 'State Government', 'Trust/Foundation/Foundation', 'Target']
-let color = ["#4e79a7", "#f28e2c", "#e15759", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#9c755f", "#9c755f", "#bab0ab", "#fffff"];
-// let color = ["#ffffff", "#218aee", "#44aa99", "#0a461e","#332288", "#ddcc77", "#999933", "#cc6677", "#882255", "#aa4499"]
-
+let color = ["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "#af7aa1", "#ff9da7", "#9c755f", "#bab0ab", "#fffff"];
+// let color = ["#ffffff", "#218aee", "#44aa99", "#0a461e", "#332288", "#ddcc77", "#999933", "#cc6677", "#882255", "#aa4499"]
 window.onload = function () {
     if_mobile()
     graph()
@@ -47,17 +46,20 @@ function load_controls() {
         let cur_color = color[org_types.indexOf(org_type)].replace("#", "");
         let li = document.createElement('LI');
         li.style.color = color[org_types.indexOf(org_type)] + " !important;";
-        //background-image: linear-gradient(to right, "+String(cur_color)+" 12%, #121212 10% );
-        li.innerHTML = "<label class='dropdown-element btn btn-dark d-flex justify-content-left pl-4' style='background-color: "+ ColorLuminance(String(cur_color),-0.5)+"'>" +
+        li.innerHTML =
+            "<label class='dropdown-element btn btn-dark d-flex justify-content-left pl-4' style='background-color: " + ColorLuminance(String(cur_color), -0.5) + "'>" +
             " <input type='checkbox' class='' onchange='toggle_group(this)'>" + org_type + "</label>";
         dropdown.appendChild(li)
     }
-    let tf = true;
+    let li = document.createElement('LI');
+    li.innerHTML = "<label class='dropdown-element btn btn-dark d-flex justify-content-left pl-4'>" +
+        " <input type='checkbox' class='' onchange='toggle_color_blind(this)'> Color Blind Mode  </label>";
+    dropdown.appendChild(li)
     for (let selection of ['Select All', 'Deselect All']) {
         let li = document.createElement('LI');
-        //<div class="dropdown-divider"></div>
         li.innerHTML = '<button type="button" class="btn btn-secondary btn-sm btn-block mb-2" onclick="toggle_selectAll(this.innerText)">' + selection + '</button>';
         dropdown.appendChild(li);
         tf = false;
     }
 }
+
