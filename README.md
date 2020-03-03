@@ -1,5 +1,8 @@
 Relationship Visualization with Treemaps and Force Graphs
 ===
+
+<https://petrakumi12.github.io/australia-iqp-vis/>
+
 In this repo I took an original visualization and used skills learned in a data visualization class to improve upon it. 
 
 This visualization was done by a project team at Worcester Polytechnic Institute. I was able to contact the advisors and
