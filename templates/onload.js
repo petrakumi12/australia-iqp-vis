@@ -3,6 +3,7 @@ let color = ["#4e79a7", "#f28e2c", "#e15759", "#76b7b2", "#59a14f", "#edc949", "
 // let color = ["#ffffff", "#218aee", "#44aa99", "#0a461e", "#332288", "#ddcc77", "#999933", "#cc6677", "#882255", "#aa4499"]
 window.onload = function () {
     if_mobile()
+    treemap()
     graph()
     load_controls()
     keep_dropdown_dropped()
@@ -26,6 +27,7 @@ function if_mobile() {
 function remove_div() {
     console.log('hereee')
     document.getElementById('help-text').style = "opacity:0; animation: 1s ease-out 0s 1 slideOutFromLeft";
+    document.getElementsByClassName('typed')[0].style.zIndex = -1;
     document.getElementById('the-btn').innerText = "Show intro text";
     document.getElementById('the-btn').removeEventListener('click', remove_div);
     document.getElementById('the-btn').addEventListener('click', show_div)
@@ -35,7 +37,10 @@ function remove_div() {
 function show_div() {
     console.log('hereee')
     document.getElementById('help-text').style = "opacity:1; animation: 1s ease-out 0s 1 slideInFromLeft";
+    document.getElementsByClassName('typed')[0].style.zIndex = 480;
     document.getElementById('the-btn').innerText = "Hide intro text";
+    document.getElementById('controls-btn').style.zIndex = 500;
+    document.getElementById('the-btn').style.zIndex = 500;
     document.getElementById('the-btn').addEventListener('click', remove_div);
     document.getElementById('the-btn').removeEventListener('click', show_div)
 }

@@ -11,14 +11,14 @@ let map = {
     8: 'eight',
     9: 'nine'
 };
-let darkness = -0.8;
+let darkness = -0.6;
 
 let names_path = 'templates/resources/all_names_new.csv';
 let direction_path = 'templates/resources/to_from.csv';
 
 function graph() {
     d3.csv(names_path).then(function (names_json) {
-        console.log(names_json);
+        // console.log(names_json);
 
         d3.csv(direction_path).then(function (dirs_json) {
             delete names_json['columns'];
@@ -60,31 +60,31 @@ function graph() {
             const links = data.links;
             const nodes = data.nodes;
 
-            const width = window.innerWidth;
+            const width = window.innerWidth / 2;
             const height = window.innerHeight;
 
-            console.log('color', color);
-            console.log('links', links);
-            console.log('nodes', nodes);
+            // console.log('color', color);
+            // console.log('links', links);
+            // console.log('nodes', nodes);
 
             const simulation = d3.forceSimulation(nodes)
                 .force("link", d3.forceLink(links).id(d => d.id))
                 .force("charge", d3.forceManyBody().strength(-600))
-                .force("center", d3.forceCenter((width / 2) - 150, (height / 2) - 20))
+                .force("center", d3.forceCenter(width / 2 , (height / 2) - 20))
 
 
-            const svg = d3.select("#viz")
+            const svg = d3.select("#graph")
                 .call(d3.zoom()
                     .on("zoom", function () {
                         svg.selectAll('g')
                             .attr('transform', d3.event.transform);
                     }))
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .attr('x', 0)
-                .attr('y', 0)
-                .attr("transform", "translate(" + width / 2 + ",0), scale(2)")
+                // .append('svg')
+                // .attr('width', width)
+                // .attr('height', height)
+                // .attr('x', window.innerWidth/2)
+                // .attr('y', 0)
+                .attr("transform", "translate(" + 15 + ",0)")
                 .attr("preserveAspectRatio", "xMidYMid meet")
 
 
@@ -163,6 +163,7 @@ function graph() {
 
             //dat gui hereeee
             // load_dat_gui(svg.node());
+
             return svg.node();
 
         })
@@ -232,7 +233,16 @@ function ColorLuminance(hex, lum) {
 
 
 function mouseover(d, obj) {
-    console.log('mouseover', obj)
+    // console.log('mouseover', obj)
+
+    d3.selectAll('rect')
+        .transition()
+        .attr('fill', d => {
+            console.log(d)
+            // while (d.depth > 1) d = d.parent;
+            let col = color[org_types.indexOf(d.data.org_type)].replace("#", "");
+            return ColorLuminance(col, darkness);
+        })
 
     d3.select(obj)
         .attr('r', (d.effort / 5) + 15);
@@ -247,19 +257,18 @@ function mouseover(d, obj) {
         .transition()
         .duration(250)
         .attr('fill', color[org_types.indexOf(d.data)])
-        // .attr('fill-opacity', 1)
-        // .attr('stroke-width', 1.7)
+    // .attr('fill-opacity', 1)
+    // .attr('stroke-width', 1.7)
 
 
 }
 
 function mouseout(d, obj) {
-     d3.select(obj)
-            .attr('r', (d.effort / 5) + 5);
+    d3.select(obj)
+        .attr('r', (d.effort / 5) + 5);
 
-    console.log('cur state is', cur_state)
+    // console.log('cur state is', cur_state)
     if (cur_state) {
-
 
         d3.selectAll("line")
             .attr('stroke-opacity', 0.3)
@@ -268,13 +277,20 @@ function mouseout(d, obj) {
         d3.selectAll('circle')
             .transition()
             .attr('fill', d => color[org_types.indexOf(d.data)])
+
+        d3.selectAll('rect')
+            .transition()
+            .attr('fill', d => color[org_types.indexOf(d.data.org_type)])
     }
     else {
         d3.selectAll('circle')
             .transition()
             .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness))
-            // .attr("stroke", "#262626")
-            // .attr('stroke-opacity', 0.3)
+        // .attr("stroke", "#262626")
+        // .attr('stroke-opacity', 0.3)
+        d3.selectAll('rect')
+            .transition()
+            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data.org_type)].replace("#", ""), darkness))
     }
 
 }
