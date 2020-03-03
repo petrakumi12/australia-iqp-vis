@@ -26,7 +26,18 @@ My redesign:
 - Add a colorblind mode that changes the color scheme to a more colorblind friendly one
 
 
-##Images
+## Features
+- Controls dropdown button that also serves as a legend
+- Allowing users to select or deselect all groups with one button
+- Allowing users to select more than one group at a time using the dropdown menu
+- Hovering over one section of the treemap or the force graph will highlight elemetns of that same group on the other visualization
+- Hovering over a node or section of the treemap gives you more information about that node
+- The force graph is zoomable, can be panned, and moved around to allow the user to explore the data as much as they want. 
+- A far more appealing color scheme with color blind mode
+- Adding colors to the dropdown list menu to make it easier for the user to understand which color corresponds to which category
+- The legend/controls can show or hide to leave as much space possible for the actual viz
+
+## Images
 ### Original Viz
 ![Image](resources/img/og_viz.png)
 
