@@ -3,16 +3,14 @@ Relationship Visualization with Treemaps and Force Graphs
 
 <https://petrakumi12.github.io/australia-iqp-vis/>
 
-In this repo I took an original visualization and used skills learned in a data visualization class to improve upon it. 
+This project aims to show the degree of collaboration between the Port Philip EcoCentre in Australia and various other Australian NGOs. It uses a tree map and force graph to vizualize these collaborative efforts. 
 
-This visualization was done by a project team at Worcester Polytechnic Institute. I was able to contact the advisors and
-retrieve the data they collected so I could redo their visualization. 
+The size of the node radius represents hours of partnership, and the arrow shows the direction of the partnership. The color shows the type of organization:
+Business, Community Organization, Education, Government, Local Government, Other, State Government, Trust/Foundation/Foundation, Target (Port Philips EcoCentre)
 
-The original visualization shows various organizations that the Port Philip EcoCentre in Australia has partnerships with. The bigger
-node radius shows more hours of partnership, and the arrow shows the direction of the partnership. The color shows the type of organization:
-Business, Community Organization, Education, Government, Local Government, Other, State Government, Trust/Foundation/Foundation, Target
+Built with JS and D3. 
 
-
+This project was intended to improve on a previous viz, shown in the images section below. 
 Problems with the original viz:
 - Users are only able to interact with the viz through an app called Gephi, but even then the controls are really hard to use and make for a bad user experience.
 - The colors pop too much and become distracting
